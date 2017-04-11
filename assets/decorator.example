@@ -1,0 +1,41 @@
+exports.decorateTerm = (Term, { React, notify }) => {
+  // Hack to fix the react import
+  try {
+    require('react')
+  } catch (e) {
+    var M = require('module')
+    var originalRequire = M.prototype.require
+    M.prototype.require = function(path) {
+      if (path === 'react') { return React }
+      return originalRequire.apply(
+        this, arguments
+      )
+    }
+  }
+
+  return class extends React.Component {
+    render() {
+      const children = [
+        React.createElement(
+          Term,
+          Object.assign(
+            {},
+            this.props,
+            { key: 'term' },
+          )
+        ),
+      ]
+
+      const {
+        superPlugin: { border }
+      } = this.props
+      return React.createElement(
+        'div',
+        {
+          style: {
+            border: `5px solid ${color}`
+          },
+        children
+      )
+    }
+  }

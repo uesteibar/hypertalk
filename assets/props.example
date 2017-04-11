@@ -1,0 +1,14 @@
+exports.mapTermsState = (state, map) => {
+  return Object.assign(map, {
+    superPlugin: state.ui.superPlugin,
+  })
+}
+
+const passProps = (uid, parentProps, props) => {
+  return Object.assign(props, {
+    superPlugin: parentProps.superPlugin,
+  })
+}
+
+exports.getTermGroupProps = passProps
+exports.getTermProps = passProps

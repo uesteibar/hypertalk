@@ -1,0 +1,13 @@
+exports.reduceUI = (state, action) => {
+  switch (action.type) {
+    case types.CHANGE_BACKGROUND:
+      const superPlugin = {
+        border: getRandomColor()
+      }
+
+      return state.set(
+        'superPlugin', superPlugin
+      )
+  }
+  return state
+}

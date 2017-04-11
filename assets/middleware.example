@@ -1,0 +1,16 @@
+exports.middleware = store => next => action => {
+  if (!action) { return }
+  if (action.type === 'SESSION_ADD_DATA') {
+    const { data } = action
+
+    if (data === 'ñ') {
+      store.dispatch({
+        type: types.CHANGE_BORDER
+      })
+    } else {
+      next(action)
+    }
+  } else {
+    next(action)
+  }
+}
